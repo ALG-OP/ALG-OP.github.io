@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Prep 2 Revision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for better readability and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #334155; /* Darker text for contrast */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px; /* Limit width for better readability on large screens */
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+        }
+        .unit-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            color: #1e3a8a; /* Darker blue for titles */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .lesson-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: #3b82f6; /* Blue for lesson titles */
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            background-color: #eff6ff; /* Light blue background for headers */
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+        .lesson-title:hover {
+            background-color: #dbeafe; /* Lighter blue on hover */
+        }
+        .lesson-content {
+            padding: 1rem 1.25rem;
+            background-color: #f9fafb; /* Even lighter background for content */
+            border-radius: 0.75rem;
+            margin-top: -0.5rem; /* Overlap slightly with title for continuous look */
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            display: none; /* Hidden by default */
+            overflow: hidden; /* Hide overflow during animation */
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition */
+            max-height: 0; /* For collapse animation */
+            opacity: 0; /* For fade animation */
+        }
+        .lesson-content.active {
+            display: block;
+            max-height: 1000px; /* Sufficiently large value for content to expand */
+            opacity: 1;
+        }
+        .section-heading {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600;
+            color: #4b5563; /* Grayish blue */
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .quiz-question {
+            background-color: #e0f2fe; /* Very light blue for questions */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .quiz-options button {
+            background-color: #60a5fa; /* Blue button */
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-options button:hover {
+            background-color: #3b82f6; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+        .quiz-options button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+        .quiz-feedback.correct {
+            background-color: #d1fae5; /* Light green */
+            color: #065f46; /* Dark green */
+        }
+        .quiz-feedback.incorrect {
+            background-color: #fee2e2; /* Light red */
+            color: #991b1b; /* Dark red */
+        }
+        .quiz-feedback.neutral {
+            background-color: #e2e8f0; /* Light gray */
+            color: #4b5563; /* Dark gray */
+        }
+        .nav-button {
+            background-color: #93c5fd; /* Lighter blue for nav */
+            color: #1e3a8a; /* Dark blue text */
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button:hover {
+            background-color: #60a5fa; /* Darker blue on hover */
+            color: white;
+            transform: translateY(-2px);
+        }
+        .nav-button.active {
+            background-color: #1e3a8a; /* Active nav button */
+            color: white;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="container">
+        <h1 class="text-center text-5xl font-extrabold text-indigo-800 mb-8">Science Prep 2 Revision</h1>
+
+        <div class="flex justify-center space-x-4 mb-8">
+            <button id="unit1-nav" class="nav-button active" onclick="showUnit('unit1')">Unit 1: Periodic Motion</button>
+            <button id="unit2-nav" class="nav-button" onclick="showUnit('unit2')">Unit 2: Sound & Light</button>
+        </div>
+
+        <div id="unit1" class="unit-section">
+            <h2 class="unit-title">Unit 1: Periodic Motion</h2>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleLesson(this)">
+                    Lesson 1: Oscillatory Motion
+                    <span class="arrow">&#9660;</span> </div>
+                <div class="lesson-content">
+                    <p class="mb-2"><strong>Definition:</strong> Motion that repeats itself over a fixed period of time.</p>
+                    <p class="mb-2"><strong>Examples:</strong> Pendulum swinging, spring vibrating, guitar string vibrating.</p>
+                    <h3 class="section-heading">Key Concepts:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Displacement:</strong> Distance of the vibrating body from its equilibrium (rest) position at any moment.</li>
+                        <li><strong>Amplitude:</strong> The maximum displacement of the vibrating body from its equilibrium position.</li>
+                        <li><strong>Periodic Time (T):</strong> The time taken for one complete oscillation (cycle). Unit: seconds (s).</li>
+                        <li><strong>Frequency (f):</strong> The number of complete oscillations made per second. Unit: Hertz (Hz).</li>
+                    </ul>
+                    <h3 class="section-heading">Formulas:</h3>
+                    <ul class="list-disc list-inside">
+                        <li>$T = \frac{\text{Time in seconds}}{\text{Number of complete oscillations}}$</li>
+                        <li>$f = \frac{\text{Number of complete oscillations}}{\text{Time in seconds}}$</li>
+                        <li>**Relationship:** $f = \frac{1}{T}$ (Frequency is the reciprocal of Periodic Time)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleLesson(this)">
+                    Lesson 2: Wave Motion
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <p class="mb-2"><strong>Definition:</strong> A disturbance that travels through a medium, transferring energy without transferring matter.</p>
+                    <h3 class="section-heading">Types of Waves:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Transverse Waves:</strong> Particles of the medium vibrate **perpendicular** to the direction of wave propagation.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Have **crests** (highest points) and **troughs** (lowest points).</li>
+                                <li>Examples: Light waves, water waves.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Longitudinal Waves:</strong> Particles of the medium vibrate **parallel** to the direction of wave propagation.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Have **compressions** (regions of high density) and **rarefactions** (regions of low density).</li>
+                                <li>Examples: Sound waves.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3 class="section-heading">Key Concepts:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Wavelength ($\lambda$):</strong> The distance between two consecutive crests or troughs (for transverse waves), or two consecutive compressions or rarefactions (for longitudinal waves). Unit: meter (m).</li>
+                        <li><strong>Amplitude:</strong> The maximum displacement of the particles of the medium from their rest position.</li>
+                        <li><strong>Wave Speed (v):</strong> The speed at which the wave travels through the medium. Unit: meter/second (m/s).</li>
+                    </ul>
+                    <h3 class="section-heading">Formula:</h3>
+                    <ul class="list-disc list-inside">
+                        <li>**Wave Equation:** $v = \lambda \times f$ (Wave Speed = Wavelength $\times$ Frequency)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-blue-50 rounded-xl shadow-md">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4 text-center">Check Your Understanding - Unit 1</h3>
+                <div id="quiz-unit1">
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">1. The maximum displacement of a vibrating body from its equilibrium position is called:</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit1', 1, 'A')">A. Frequency</button>
+                            <button onclick="checkAnswer('unit1', 1, 'B')">B. Periodic Time</button>
+                            <button onclick="checkAnswer('unit1', 1, 'C')">C. Amplitude</button>
+                            <button onclick="checkAnswer('unit1', 1, 'D')">D. Wavelength</button>
+                        </div>
+                        <div id="feedback-unit1-1" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">2. In a longitudinal wave, the particles vibrate ______ to the direction of wave propagation.</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit1', 2, 'A')">A. Perpendicular</button>
+                            <button onclick="checkAnswer('unit1', 2, 'B')">B. Parallel</button>
+                            <button onclick="checkAnswer('unit1', 2, 'C')">C. Diagonally</button>
+                            <button onclick="checkAnswer('unit1', 2, 'D')">D. Randomly</button>
+                        </div>
+                        <div id="feedback-unit1-2" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">3. If a vibrating body makes 100 oscillations in 5 seconds, its frequency is:</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit1', 3, 'A')">A. 500 Hz</button>
+                            <button onclick="checkAnswer('unit1', 3, 'B')">B. 20 Hz</button>
+                            <button onclick="checkAnswer('unit1', 3, 'C')">C. 0.05 Hz</button>
+                            <button onclick="checkAnswer('unit1', 3, 'D')">D. 10 Hz</button>
+                        </div>
+                        <div id="feedback-unit1-3" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">4. Which of the following is an example of a transverse wave?</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit1', 4, 'A')">A. Sound wave</button>
+                            <button onclick="checkAnswer('unit1', 4, 'B')">B. Seismic P-wave</button>
+                            <button onclick="checkAnswer('unit1', 4, 'C')">C. Light wave</button>
+                            <button onclick="checkAnswer('unit1', 4, 'D')">D. All of the above</button>
+                        </div>
+                        <div id="feedback-unit1-4" class="quiz-feedback neutral"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="unit2" class="unit-section hidden">
+            <h2 class="unit-title">Unit 2: Sound and Light</h2>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleLesson(this)">
+                    Lesson 1: Properties of Sound Waves
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <p class="mb-2"><strong>Sound Production:</strong> Sound is produced by **vibrations** of objects.</p>
+                    <p class="mb-2"><strong>Nature of Sound Waves:</strong> Sound travels as **longitudinal waves** and requires a **medium** (solid, liquid, or gas) to propagate. It cannot travel through a vacuum.</p>
+                    <h3 class="section-heading">Properties of Sound:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Loudness (Intensity):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Depends on the **amplitude** of the sound wave. Larger amplitude = louder sound.</li>
+                                <li>Measured in **decibels (dB)**.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pitch (Tone):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Depends on the **frequency** of the sound wave. Higher frequency = high pitch (sharper sound). Lower frequency = lower pitch (graver sound).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Quality (Timbre):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Allows us to distinguish between sounds of the same pitch and loudness produced by different sources (e.g., a piano vs. a guitar playing the same note). It depends on the presence of **harmonics (overtones)**.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="mb-2"><strong>Speed of Sound:</strong> Varies in different media. Generally, speed of sound in **solids > liquids > gases**.</p>
+                </div>
+            </div>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleLesson(this)">
+                    Lesson 2: Wave Nature of Light
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <p class="mb-2"><strong>Nature of Light:</strong> Light is a form of energy that travels as **electromagnetic waves**. It does **not require a medium** to travel and can pass through a vacuum.</p>
+                    <p class="mb-2"><strong>Speed of Light:</strong> The speed of light in a vacuum ($c$) is constant and very high (approximately $3 \times 10^8$ m/s).</p>
+                    <h3 class="section-heading">Electromagnetic Spectrum:</h3>
+                    <p class="mb-2">The full range of electromagnetic waves, which differ in wavelength and frequency. Visible light is only a small part of this spectrum (includes radio waves, microwaves, infrared, ultraviolet, X-rays, gamma rays).</p>
+                    <p class="mb-2">Different colors of visible light correspond to different wavelengths and frequencies.</p>
+                </div>
+            </div>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleLesson(this)">
+                    Lesson 3: Reflection and Refraction of Light
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <h3 class="section-heading">Reflection of Light:</h3>
+                    <p class="mb-2"><strong>Definition:</strong> The bouncing back of light rays when they strike a surface.</p>
+                    <h4 class="font-semibold mb-1">Laws of Reflection:</h4>
+                    <ol class="list-decimal list-inside mb-2">
+                        <li>The incident ray, the reflected ray, and the normal (a line perpendicular to the surface at the point of incidence) all lie in the same plane.</li>
+                        <li>The angle of incidence (angle between incident ray and normal) is equal to the angle of reflection (angle between reflected ray and normal).</li>
+                    </ol>
+                    <h4 class="font-semibold mb-1">Types of Reflection:</h4>
+                    <ul class="list-disc list-inside">
+                        <li><strong>Regular Reflection:</strong> Occurs from smooth, polished surfaces (e.g., mirror), producing clear images.</li>
+                        <li><strong>Irregular (Diffuse) Reflection:</strong> Occurs from rough surfaces, scattering light in many directions, so no clear image is formed.</li>
+                    </ul>
+
+                    <h3 class="section-heading mt-4">Refraction of Light:</h3>
+                    <p class="mb-2"><strong>Definition:</strong> The bending of light rays as they pass from one transparent medium to another with a different optical density (due to a change in the speed of light).</p>
+                    <h4 class="font-semibold mb-1">Key Concepts:</h4>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>When light passes from a **less optically dense** medium (e.g., air) to a **more optically dense** medium (e.g., water), it bends **towards the normal**.</li>
+                        <li>When light passes from a **more optically dense** medium to a **less optically dense** medium, it bends **away from the normal**.</li>
+                        <li><strong>Apparent Depth:</strong> Objects submerged in water appear shallower than they actually are due to refraction.</li>
+                        <li><strong>Total Internal Reflection:</strong> Occurs when light travels from a denser to a less dense medium, and the angle of incidence is greater than the critical angle. The light is completely reflected back into the denser medium.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>Application: Optical fibers.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-blue-50 rounded-xl shadow-md">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4 text-center">Check Your Understanding - Unit 2</h3>
+                <div id="quiz-unit2">
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">1. The loudness of sound depends on its:</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit2', 1, 'A')">A. Frequency</button>
+                            <button onclick="checkAnswer('unit2', 1, 'B')">B. Wavelength</button>
+                            <button onclick="checkAnswer('unit2', 1, 'C')">C. Amplitude</button>
+                            <button onclick="checkAnswer('unit2', 1, 'D')">D. Speed</button>
+                        </div>
+                        <div id="feedback-unit2-1" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">2. When light passes from air to water, it bends:</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit2', 2, 'A')">A. Away from the normal</button>
+                            <button onclick="checkAnswer('unit2', 2, 'B')">B. Towards the normal</button>
+                            <button onclick="checkAnswer('unit2', 2, 'C')">C. Does not bend</button>
+                            <button onclick="checkAnswer('unit2', 2, 'D')">D. Reflects</button>
+                        </div>
+                        <div id="feedback-unit2-2" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">3. Which property of sound allows you to distinguish between a piano and a guitar playing the same note?</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit2', 3, 'A')">A. Loudness</button>
+                            <button onclick="checkAnswer('unit2', 3, 'B')">B. Pitch</button>
+                            <button onclick="checkAnswer('unit2', 3, 'C')">C. Quality (Timbre)</button>
+                            <button onclick="checkAnswer('unit2', 3, 'D')">D. Speed</button>
+                        </div>
+                        <div id="feedback-unit2-3" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">4. Light waves are an example of:</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit2', 4, 'A')">A. Longitudinal waves</button>
+                            <button onclick="checkAnswer('unit2', 4, 'B')">B. Mechanical waves</button>
+                            <button onclick="checkAnswer('unit2', 4, 'C')">C. Electromagnetic waves</button>
+                            <button onclick="checkAnswer('unit2', 4, 'D')">D. Sound waves</button>
+                        </div>
+                        <div id="feedback-unit2-4" class="quiz-feedback neutral"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactive elements
+
+        // Function to toggle lesson content visibility
+        function toggleLesson(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                arrow.innerHTML = '&#9660;'; // Down arrow
+            } else {
+                // Close all other open lessons in the current unit
+                const currentUnit = element.closest('.unit-section');
+                const openContents = currentUnit.querySelectorAll('.lesson-content.active');
+                openContents.forEach(openContent => {
+                    openContent.classList.remove('active');
+                    openContent.previousElementSibling.querySelector('.arrow').innerHTML = '&#9660;';
+                });
+
+                content.classList.add('active');
+                arrow.innerHTML = '&#9650;'; // Up arrow
+            }
+        }
+
+        // Correct answers for quizzes
+        const correctAnswers = {
+            unit1: {
+                1: 'C', // Amplitude
+                2: 'B', // Parallel
+                3: 'B', // 20 Hz (100 oscillations / 5 seconds)
+                4: 'C'  // Light wave
+            },
+            unit2: {
+                1: 'C', // Amplitude
+                2: 'B', // Towards the normal
+                3: 'C', // Quality (Timbre)
+                4: 'C'  // Electromagnetic waves
+            }
+        };
+
+        // Function to check quiz answers
+        function checkAnswer(unitId, questionNum, selectedOption) {
+            const feedbackElement = document.getElementById(`feedback-${unitId}-${questionNum}`);
+            const correctAnswer = correctAnswers[unitId][questionNum];
+
+            if (selectedOption === correctAnswer) {
+                feedbackElement.textContent = 'Correct! Well done.';
+                feedbackElement.className = 'quiz-feedback correct';
+            } else {
+                feedbackElement.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+                feedbackElement.className = 'quiz-feedback incorrect';
+            }
+        }
+
+        // Function to show/hide units
+        function showUnit(unitId) {
+            const units = document.querySelectorAll('.unit-section');
+            units.forEach(unit => {
+                unit.classList.add('hidden');
+            });
+            document.getElementById(unitId).classList.remove('hidden');
+
+            // Update active navigation button
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`${unitId}-nav`).classList.add('active');
+
+            // Reset quiz feedback when switching units
+            document.querySelectorAll('.quiz-feedback').forEach(feedback => {
+                feedback.textContent = '';
+                feedback.className = 'quiz-feedback neutral';
+            });
+
+            // Close all lessons when switching units
+            document.querySelectorAll('.lesson-content.active').forEach(content => {
+                content.classList.remove('active');
+                content.previousElementSibling.querySelector('.arrow').innerHTML = '&#9660;';
+            });
+        }
+
+        // Initialize by showing Unit 1
+        window.onload = () => {
+            showUnit('unit1');
+        };
+    </script>
+</body>
+</html>
