@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Prep 2 Revision</title>
+    <title>Science Prep 2 Full Revision</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -22,7 +22,7 @@
             border-radius: 1rem; /* More rounded corners */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
         }
-        .unit-title {
+        .main-unit-title {
             font-size: 2.25rem; /* text-4xl */
             font-weight: 700; /* font-bold */
             color: #1e3a8a; /* Darker blue for titles */
@@ -135,21 +135,22 @@
 </head>
 <body class="p-4 sm:p-6 md:p-8">
     <div class="container">
-        <h1 class="text-center text-5xl font-extrabold text-indigo-800 mb-8">Science Prep 2 Revision</h1>
+        <h1 class="text-center text-5xl font-extrabold text-indigo-800 mb-8">Science Prep 2 Full Revision</h1>
 
-        <div class="flex justify-center space-x-4 mb-8">
+        <div class="flex justify-center flex-wrap gap-4 mb-8">
             <button id="unit1-nav" class="nav-button active" onclick="showUnit('unit1')">Unit 1: Periodic Motion</button>
             <button id="unit2-nav" class="nav-button" onclick="showUnit('unit2')">Unit 2: Sound & Light</button>
+            <button id="unit3-nav" class="nav-button" onclick="showUnit('unit3')">Unit 3: Reproduction</button>
         </div>
 
         <div id="unit1" class="unit-section">
-            <h2 class="unit-title">Unit 1: Periodic Motion</h2>
+            <h2 class="main-unit-title">Unit 1: Periodic Motion</h2>
 
             <div class="lesson-container mb-4">
-                <div class="lesson-title" onclick="toggleLesson(this)">
+                <div class="lesson-title" onclick="toggleContent(this)">
                     Lesson 1: Oscillatory Motion
                     <span class="arrow">&#9660;</span> </div>
-                <div class="lesson-content">
+                <div class="lesson-content active">
                     <p class="mb-2"><strong>Definition:</strong> Motion that repeats itself over a fixed period of time.</p>
                     <p class="mb-2"><strong>Examples:</strong> Pendulum swinging, spring vibrating, guitar string vibrating.</p>
                     <h3 class="section-heading">Key Concepts:</h3>
@@ -169,7 +170,7 @@
             </div>
 
             <div class="lesson-container mb-4">
-                <div class="lesson-title" onclick="toggleLesson(this)">
+                <div class="lesson-title" onclick="toggleContent(this)">
                     Lesson 2: Wave Motion
                     <span class="arrow">&#9660;</span>
                 </div>
@@ -251,10 +252,10 @@
         </div>
 
         <div id="unit2" class="unit-section hidden">
-            <h2 class="unit-title">Unit 2: Sound and Light</h2>
+            <h2 class="main-unit-title">Unit 2: Sound and Light</h2>
 
             <div class="lesson-container mb-4">
-                <div class="lesson-title" onclick="toggleLesson(this)">
+                <div class="lesson-title" onclick="toggleContent(this)">
                     Lesson 1: Properties of Sound Waves
                     <span class="arrow">&#9660;</span>
                 </div>
@@ -285,7 +286,7 @@
             </div>
 
             <div class="lesson-container mb-4">
-                <div class="lesson-title" onclick="toggleLesson(this)">
+                <div class="lesson-title" onclick="toggleContent(this)">
                     Lesson 2: Wave Nature of Light
                     <span class="arrow">&#9660;</span>
                 </div>
@@ -299,7 +300,7 @@
             </div>
 
             <div class="lesson-container mb-4">
-                <div class="lesson-title" onclick="toggleLesson(this)">
+                <div class="lesson-title" onclick="toggleContent(this)">
                     Lesson 3: Reflection and Refraction of Light
                     <span class="arrow">&#9660;</span>
                 </div>
@@ -379,13 +380,167 @@
                 </div>
             </div>
         </div>
+
+        <div id="unit3" class="unit-section hidden">
+            <h2 class="main-unit-title">Unit 3: Reproduction and Continuity of Species</h2>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleContent(this)">
+                    Lesson 1: Reproduction in Plants
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <p class="mb-2"><strong>Reproduction:</strong> The biological process by which new individual organisms are produced from their parents.</p>
+                    <h3 class="section-heading">1. Asexual Reproduction:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li>Involves **one parent**.</li>
+                        <li>Offspring are **genetically identical** to the parent (clones).</li>
+                        <li>Does not involve gametes or fertilization.</li>
+                        <li>**Examples (Vegetative Propagation):**
+                            <ul class="list-circle list-inside ml-4">
+                                <li><strong>Natural:</strong>
+                                    <ul>
+                                        <li>**Runners:** (e.g., Strawberry) Horizontal stems that grow along the ground and produce new plants at nodes.</li>
+                                        <li>**Rhizomes:** (e.g., Ginger) Underground stems that grow horizontally and can produce new shoots.</li>
+                                        <li>**Tubers:** (e.g., Potato) Swollen underground stems that store food and have "eyes" (buds) that can grow into new plants.</li>
+                                        <li>**Bulbs:** (e.g., Onion) Underground stems with fleshy leaves that store food; new bulbs can form from side buds.</li>
+                                        <li>**Leaf cuttings:** (e.g., Bryophyllum) Leaves that can develop roots and shoots from their margins.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Artificial:</strong> (Methods done by humans)
+                                    <ul>
+                                        <li>**Cuttings:** Pieces of stem, root, or leaf planted to grow a new plant.</li>
+                                        <li>**Layering:** A stem is bent and covered with soil while still attached to the parent plant, encouraging root formation.</li>
+                                        <li>**Grafting:** Joining a part of one plant (scion) to another plant (stock) so they grow as one.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3 class="section-heading">2. Sexual Reproduction:</h3>
+                    <ul class="list-disc list-inside">
+                        <li>Involves **two parents**.</li>
+                        <li>Offspring have **genetic variation** (not identical to parents).</li>
+                        <li>Involves the fusion of **gametes** (sex cells).</li>
+                        <li>Occurs in **flowering plants**.</li>
+                    </ul>
+                    <h3 class="section-heading">Sexual Reproduction in Flowering Plants:</h3>
+                    <h4 class="font-semibold mb-1">The Flower: (Reproductive Organ)</h4>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Sepals:</strong> Usually green, leaf-like structures that protect the flower bud.</li>
+                        <li><strong>Petals:</strong> Often brightly colored and scented to attract pollinators.</li>
+                        <li><strong>Stamens (Male Part):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>**Anther:** Produces **pollen grains** (contain male gametes).</li>
+                                <li>**Filament:** Stalk that supports the anther.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pistil / Carpel (Female Part):</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>**Stigma:** Sticky tip that receives pollen.</li>
+                                <li>**Style:** Stalk connecting the stigma to the ovary.</li>
+                                <li>**Ovary:** Contains **ovules** (contain female gametes).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="font-semibold mb-1">Processes:</h4>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Pollination:</strong> The transfer of pollen grains from the anther to the stigma.
+                            <ul class="list-circle list-inside ml-4">
+                                <li>**Self-pollination:** Pollen transferred within the same flower or to another flower on the same plant.</li>
+                                <li>**Cross-pollination:** Pollen transferred from a flower on one plant to a flower on a different plant of the same species (aided by wind, insects, birds, water).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fertilization:</strong> The fusion of the male gamete (from pollen) with the female gamete (in the ovule) inside the ovary. This forms a **zygote**.</li>
+                        <li><strong>Seed and Fruit Formation:</strong>
+                            <ul class="list-circle list-inside ml-4">
+                                <li>The **zygote** develops into an **embryo** (the young plant).</li>
+                                <li>The **ovule** develops into a **seed**.</li>
+                                <li>The **ovary** usually develops into a **fruit**, which protects the seeds and aids in their dispersal.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Seed Dispersal:</strong> The scattering of seeds away from the parent plant to reduce competition (by wind, water, animals).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-container mb-4">
+                <div class="lesson-title" onclick="toggleContent(this)">
+                    Lesson 2: Reproduction in Humans
+                    <span class="arrow">&#9660;</span>
+                </div>
+                <div class="lesson-content">
+                    <p class="mb-2">The human reproductive system is responsible for producing gametes and nurturing the developing offspring.</p>
+                    <h3 class="section-heading">Male Reproductive System:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Testes:</strong> Produce **sperm cells** (male gametes) and male hormones (e.g., testosterone). Located in the scrotum outside the body.</li>
+                        <li><strong>Scrotum:</strong> A sac that holds the testes, keeping them at a slightly lower temperature necessary for sperm production.</li>
+                        <li><strong>Epididymis:</strong> Where sperm mature and are stored.</li>
+                        <li><strong>Vas Deferens:</strong> Tubes that transport sperm from the epididymis to the urethra.</li>
+                        <li><strong>Seminal Vesicles, Prostate Gland, Bulbourethral Glands:</strong> Produce fluids that mix with sperm to form **semen**. These fluids provide nourishment and aid in sperm movement.</li>
+                        <li><strong>Urethra:</strong> A tube that carries both urine and semen out of the body (though not at the same time).</li>
+                        <li><strong>Penis:</strong> The external organ used for sexual intercourse and urination.</li>
+                    </ul>
+                    <h3 class="section-heading">Female Reproductive System:</h3>
+                    <ul class="list-disc list-inside mb-2">
+                        <li><strong>Ovaries:</strong> Produce **egg cells (ova)** (female gametes) and female hormones (estrogen and progesterone).</li>
+                        <li><strong>Fallopian Tubes (Oviducts):</strong> Tubes that transport the egg from the ovary to the uterus. This is usually where **fertilization** occurs.</li>
+                        <li><strong>Uterus (Womb):</strong> A muscular, pear-shaped organ where the fertilized egg implants and the **fetus develops** during pregnancy.</li>
+                        <li><strong>Cervix:</strong> The lower, narrow part of the uterus that opens into the vagina.</li>
+                        <li><strong>Vagina:</strong> A muscular canal that connects the uterus to the outside of the body.</li>
+                    </ul>
+                    <h3 class="section-heading">Key Processes:</h3>
+                    <ul class="list-disc list-inside">
+                        <li><strong>Fertilization:</strong> The fusion of a sperm cell with an egg cell, typically in the fallopian tube, to form a **zygote**.</li>
+                        <li><strong>Implantation:</strong> The zygote travels to the uterus and attaches to its wall.</li>
+                        <li><strong>Pregnancy (Gestation):</strong> The period of development of the fetus inside the uterus (approx. 9 months in humans). The **placenta** forms to provide nutrients and oxygen to the fetus and remove waste. The **umbilical cord** connects the fetus to the placenta.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-blue-50 rounded-xl shadow-md">
+                <h3 class="text-2xl font-bold text-blue-700 mb-4 text-center">Check Your Understanding - Unit 3</h3>
+                <div id="quiz-unit3">
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">1. Which part of the flower contains the ovules?</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit3', 1, 'A')">A. Anther</button>
+                            <button onclick="checkAnswer('unit3', 1, 'B')">B. Ovary</button>
+                            <button onclick="checkAnswer('unit3', 1, 'C')">C. Stigma</button>
+                            <button onclick="checkAnswer('unit3', 1, 'D')">D. Filament</button>
+                        </div>
+                        <div id="feedback-unit3-1" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">2. In humans, where does the fetus develop?</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit3', 2, 'A')">A. Ovary</button>
+                            <button onclick="checkAnswer('unit3', 2, 'B')">B. Fallopian tube</button>
+                            <button onclick="checkAnswer('unit3', 2, 'C')">C. Uterus</button>
+                            <button onclick="checkAnswer('unit3', 2, 'D')">D. Vagina</button>
+                        </div>
+                        <div id="feedback-unit3-2" class="quiz-feedback neutral"></div>
+                    </div>
+                    <div class="quiz-question">
+                        <p class="font-semibold mb-2">3. What is the process of transferring pollen from the anther to the stigma called?</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer('unit3', 3, 'A')">A. Fertilization</button>
+                            <button onclick="checkAnswer('unit3', 3, 'B')">B. Germination</button>
+                            <button onclick="checkAnswer('unit3', 3, 'C')">C. Pollination</button>
+                            <button onclick="checkAnswer('unit3', 3, 'D')">D. Dispersal</button>
+                        </div>
+                        <div id="feedback-unit3-3" class="quiz-feedback neutral"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // JavaScript for interactive elements
 
         // Function to toggle lesson content visibility
-        function toggleLesson(element) {
+        function toggleContent(element) {
             const content = element.nextElementSibling;
             const arrow = element.querySelector('.arrow');
 
@@ -393,7 +548,7 @@
                 content.classList.remove('active');
                 arrow.innerHTML = '&#9660;'; // Down arrow
             } else {
-                // Close all other open lessons in the current unit
+                // Close all other open content sections within the current unit
                 const currentUnit = element.closest('.unit-section');
                 const openContents = currentUnit.querySelectorAll('.lesson-content.active');
                 openContents.forEach(openContent => {
@@ -419,6 +574,11 @@
                 2: 'B', // Towards the normal
                 3: 'C', // Quality (Timbre)
                 4: 'C'  // Electromagnetic waves
+            },
+            unit3: {
+                1: 'B', // Ovary
+                2: 'C', // Uterus
+                3: 'C'  // Pollination
             }
         };
 
@@ -456,11 +616,18 @@
                 feedback.className = 'quiz-feedback neutral';
             });
 
-            // Close all lessons when switching units
+            // Close all lessons/sections when switching units
             document.querySelectorAll('.lesson-content.active').forEach(content => {
                 content.classList.remove('active');
                 content.previousElementSibling.querySelector('.arrow').innerHTML = '&#9660;';
             });
+
+            // Re-open the first content section of the newly displayed unit
+            const firstContent = document.getElementById(unitId).querySelector('.lesson-content');
+            if (firstContent) {
+                firstContent.classList.add('active');
+                firstContent.previousElementSibling.querySelector('.arrow').innerHTML = '&#9650;';
+            }
         }
 
         // Initialize by showing Unit 1
