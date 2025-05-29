@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Decreasing Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles if needed, but Tailwind should cover most */
+        body {
+            font-family: "Inter", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8; /* Light background color */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Weekend Days Remaining</h1>
+        <p class="text-gray-600 mb-6">
+            This counter started at 88 on May 29, 2025, and decreases by one each day.
+        </p>
+        <div id="counter-display" class="text-6xl font-extrabold text-blue-600 bg-blue-50 p-6 rounded-lg shadow-inner">
+            --
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to calculate and display the daily decreasing counter
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterDisplay = document.getElementById('counter-display');
+
+            // Define the start date (May 29, 2025) and initial counter value
+            const startDate = new Date('2025-05-29T00:00:00Z'); // Set to midnight UTC for consistency
+            const initialCounterValue = 88;
+
+            /**
+             * Calculates the number of full days passed since the start date.
+             * @param {Date} start The reference start date.
+             * @param {Date} end The current date.
+             * @returns {number} The number of full days passed.
+             */
+            function getDaysPassed(start, end) {
+                // Calculate the difference in milliseconds
+                const differenceInMs = end.getTime() - start.getTime();
+
+                // Convert milliseconds to days
+                // 1000 ms/s * 60 s/min * 60 min/hr * 24 hr/day
+                const msPerDay = 1000 * 60 * 60 * 24;
+                const daysPassed = Math.floor(differenceInMs / msPerDay);
+                return daysPassed;
+            }
+
+            /**
+             * Updates the counter display.
+             */
+            function updateCounter() {
+                const currentDate = new Date();
+                let daysPassed = getDaysPassed(startDate, currentDate);
+                let currentCounterValue = initialCounterValue - daysPassed;
+
+                // Check if the counter has reached zero or gone below
+                if (currentCounterValue <= 0) {
+                    counterDisplay.textContent = "YOU GOTTA STUDY MOTHERF---ER";
+                    // Optionally, you can change the styling when it reaches zero
+                    counterDisplay.classList.remove('text-blue-600', 'bg-blue-50');
+                    counterDisplay.classList.add('text-red-600', 'bg-red-50');
+                } else {
+                    counterDisplay.textContent = currentCounterValue;
+                }
+            }
+
+            // Update the counter immediately when the page loads
+            updateCounter();
+
+            // Optional: If you want to update the counter every day exactly at midnight
+            // This is more complex and usually not needed for a simple daily counter
+            // as users typically refresh the page.
+            // For a real-time update, you'd need a server or more complex client-side logic
+            // to detect day changes without a full page refresh.
+            // For this request, updating on page load is sufficient.
+        });
+    </script>
+</body>
+</html>
